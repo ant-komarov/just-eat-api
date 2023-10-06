@@ -3,7 +3,7 @@ from typing import List
 import requests
 
 BASE_URL = "https://uk.api.just-eat.io/restaurants/bypostcode/"
-POSTAL_CODE = "G31" #  Change postal code here
+POSTAL_CODE = "G31"  # Change postal code here
 
 
 class JustEatClient:
@@ -29,9 +29,9 @@ class JustEatClient:
 
             for restaurant_data in data["Restaurants"]:
                 restaurant = {
-                    "Name": restaurant_data["Name"],
-                    "Rating": restaurant_data["RatingStars"],
-                    "Cuisines": [cuisine["Name"] for cuisine in restaurant_data["Cuisines"]]
+                    "Name": restaurant_data.get("Name"),
+                    "Rating": restaurant_data.get("RatingStars"),
+                    "Cuisines": [cuisine.get("Name") for cuisine in restaurant_data.get("Cuisines")]
                 }
                 restaurants.append(restaurant)
 
